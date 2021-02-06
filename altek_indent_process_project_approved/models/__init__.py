@@ -1,0 +1,8 @@
+from . import indent_process
+from . import sale_order
+from . import res_partner
+from . import product_template
+from . import indent_sheet
+from . import account_incoterms
+from . import account_move
+

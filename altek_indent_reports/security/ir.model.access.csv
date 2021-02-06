@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_indent_commission_report_wizard,access.indent.commission.report.wizard,model_indent_commission_report_wizard,base.group_user,1,1,1,1
+access_indent_commission_receivable_report_wizard,access.indent.commission.receivable.report.wizard,model_indent_commission_receivable_report_wizard,base.group_user,1,1,1,1
+access_indent_commission_individual_performance_report_wizard,access.indent.commission.individual.performance.report.wizard,model_indent_commission_individual_performance_report_wizard,base.group_user,1,1,1,1
+access_indent_commission_principle_wise_report_wizard,access.indent.commission.principle.wise.report.wizard,model_indent_commission_principle_wise_report_wizard,base.group_user,1,1,1,1
+access_indent_commission_salesperson_wise_report_wizard,access.indent.commission.salesperson.wise.report.wizard,model_indent_commission_sales_person_wise_report_wizard,base.group_user,1,1,1,1
+
+

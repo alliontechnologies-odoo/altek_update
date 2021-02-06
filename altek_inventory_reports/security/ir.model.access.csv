@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_slow_moving_report_wizard,access.slow.moving.report.wizard,model_slow_moving_report_wizard,base.group_user,1,1,1,1
+access_expire_stock_report_wizard,access.expire.stock.report.wizard,model_expire_stock_report_wizard,base.group_user,1,1,1,1
+
+

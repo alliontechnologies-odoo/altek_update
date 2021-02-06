@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_indent_sectors,access.indent.sector,model_indent_sector,base.group_user,1,1,1,1
+access_indent_process,access.indent.process,model_indent_process,base.group_user,1,1,1,1
+access_indent_process_lines,access.indent.process.line,model_indent_process_line,base.group_user,1,1,1,1
+access_indent_process_activities,access.indent.process.activities,model_indent_process_activities,base.group_user,1,1,1,0
+assign_user_wizard,access.assign.user.wizard,model_assign_user_wizard,base.group_user,1,1,1,1
+comment_wizard,comment.wizard,model_comment_wizard,base.group_user,1,1,1,1
+access_indent_sheet,access.access.indent.sheet,model_indent_sheet,base.group_user,1,1,1,1
+access_indent_sheet_lines,access.access.indent.sheet.lines,model_indent_sheet_line,base.group_user,1,1,1,1
+access_indent_invoice_line,access.indent.invoice.line,model_indent_invoice_line,base.group_user,1,1,1,0
+access_indent_advance_payment_inv,access.indent.advance.payment.inv,model_indent_advance_payment_inv,base.group_user,1,1,1,0
+
+

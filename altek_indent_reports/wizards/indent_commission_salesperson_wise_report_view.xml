@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="indent_commission_salesperson_wise_report_wizard" model="ir.ui.view">
+            <field name="name">indent.commission.salesperson.wise.report.wizard</field>
+            <field name="model">indent.commission.sales.person.wise.report.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="from_date" required="1"/>
+                            <field name="to_date" required="1"/>
+                            <field name="user_id" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="download_report" string="Download" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_indent_commission_salesperson_wise_report_wizard">
+            <field name="name">INDENT COMMISSION - SALES PERSON WISE</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">indent.commission.sales.person.wise.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="indent_commission_salesperson_wise_report_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_indent_reports"
+            parent="sale.menu_sale_report"
+            sequence="10"
+            name="Indent Reports" />
+
+        <menuitem
+            id="report_5"
+            name="Indent Commission Report - Salesperson Wise"
+            parent="menu_indent_reports"
+            action="action_indent_commission_salesperson_wise_report_wizard"
+            sequence="5"/>
+    </data>
+</odoo>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_indent_sheet">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-family: Times new Roman;">
+                        <table width="100%">
+                            <tr><td class="text-center" style="padding-left:5px"><h3><span><b><span t-field="o.company_id.name"/></b></span></h3></td></tr>
+                            <tr><td class="text-center" style="padding-left:5px"><span><span t-field="o.company_id.street"/>, <span t-field="o.company_id.street2"/>, <span t-field="o.company_id.city"/>, <span t-field="o.company_id.country_id"/></span></td></tr>
+                            <tr><td class="text-center" style="padding-left:5px;">Tel/Fax No. - &#160;<span t-field="o.company_id.phone"/></td></tr>
+                            <tr><td class="text-center" style="padding-left:5px;">&#160;</td></tr>
+<!--                            <tr><td class="text-center" style="padding-left:5px;"><b><u>INDENT SHEET</u></b></td></tr>-->
+                            <tr><td class="text-right" style="padding-left:5px;">Date : <span t-field="o.date"/></td></tr>
+                            <tr><td class="text-center" style="padding-left:5px;"><h5><b><span t-field="o.supplier_sector_id"/></b></h5></td></tr>
+                            <tr><td class="text-center" style="padding-left:5px;"><h5><b>ORDER NO: <span t-field="o.order_id"/></b></h5></td></tr>
+                        </table>
+                        <table style="width: 100%;" id="total">
+                            <tr>
+                                <td style="width: 40%;">
+                                    <table>
+                                        <tr>
+                                            <td style="border-right: solid 1px; border-left: solid 1px; border-top: solid 1px; padding-left:5px; width: 18%;"><i>Messers</i></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom: solid 1px; border-left: solid 1px; border-right: solid 1px; padding:5px; width: 25%;"><span t-esc="o.supplier_id" t-options='{"widget": "contact", "fields": ["name","address","phone"], "no_marker": True}'/></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>&#160;</td>
+                                <td style="width: 40%;">
+                                    <table>
+                                        <tr>
+                                            <td style="padding:5px; width: 25%;"><b>Ref. Customer PO No.  :</b></td>
+                                            <td style="padding:5px; width: 15%;" class="text-left"><b><span t-field="o.customer_po_no"/></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px; width: 25%;"><b>Ref. Customer PO Date :</b></td>
+                                            <td style="padding:5px; width: 15%;" class="text-left"><b><span t-field="o.customer_po_date"/></b></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table width="100%">
+                            <tr>
+                                <td width="50%" class="text-right" style="padding-left:5px"><span>On behalf of Messers</span></td>
+                                <td width="50%" class="text-left" style="padding-left:5px"><b><span t-esc="o.partner_id" t-options='{"widget": "contact", "fields": ["name","address"], "no_marker": True}'/></b></td>
+                            </tr>
+                        </table>
+                        <table style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <td colspan="6">Item ( Description,Quality and Quantity)</td>
+                                </tr>
+                                <tr>
+                                    <th style="width: 10%;" class="text-center">&#160;</th>
+                                    <th style="width: 5%;" class="text-center">&#160;</th>
+                                    <th style="width: 35%;" class="text-center">&#160;</th>
+                                    <td style="width: 15%;" class="text-right"><u>KGS</u></td>
+                                    <td style="width: 15%;" class="text-right"><u>US$/KG</u></td>
+                                    <td style="width: 20%;" class="text-right"><u>US$/CFR/COL(SEA)</u></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="i" t-value="1"/>
+                                <tr t-foreach="o.indent_sheet_line" t-as="l">
+                                    <td class="text-center">&#160;</td>
+                                    <td class="text-center"><span t-esc="i"/>)</td>
+                                    <td class="text-center"><span t-field="l.product_id.display_name"/></td>
+                                    <td class="text-right"><span t-field="l.product_uom_qty"/></td>
+                                    <td class="text-right"><span t-field="l.price_unit"/></td>
+                                    <td class="text-right"><span t-field="l.price_subtotal"/></td>
+                                    <t t-set="i" t-value="i + 1"/>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">&#160;</td>
+                                    <td class="text-center">&#160;</td>
+                                    <td class="text-center"><b>Total ExW</b></td>
+                                    <td class="text-right">&#160;</td>
+                                    <td class="text-right">&#160;</td>
+                                    <td class="text-right" style="border-top: solid 1px; border-bottom: solid 1px"><b><span t-field="o.amount_total"/></b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 20%;"><b>PACKING:</b></td>
+                                <td style="width: 25%;"><span t-field="o.packing"/></td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;">&#160;</td>
+                                <td style="width: 25%;">&#160;</td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;"><b>H.S.CODE NO:</b></td>
+                                <td style="width: 25%;"><span t-field="o.hs_code"/></td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;">&#160;</td>
+                                <td style="width: 25%;">&#160;</td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;">&#160;</td>
+                                <td style="width: 25%;">&#160;</td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">F.O.B.</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;"><span t-field="o.type_total"/></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;"><b>SHIPMENT:</b></td>
+                                <td style="width: 25%;"><b><span t-field="o.shipment"/></b></td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">FREIGHT</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;"><span t-field="o.freight_total"/></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;">&#160;</td>
+                                <td style="width: 25%;">&#160;</td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;"><span t-field="o.insurance_total"/></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;"><b>FINANCE:</b></td>
+                                <td style="width: 25%;"><b><span t-field="o.finance"/></b></td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;"><b><span t-field="o.grand_total"/></b></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;">&#160;</td>
+                                <td style="width: 25%;">&#160;</td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;">PORT OF SHIPMENT:</td>
+                                <td style="width: 25%;"><span t-field="o.port_of_shipment"/></td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;">&#160;</td>
+                                <td style="width: 25%;">&#160;</td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;">COUNTRY OF ORIGIN:</td>
+                                <td style="width: 25%;"><span t-field="o.country_id"/></td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;">&#160;</td>
+                                <td style="width: 25%;">&#160;</td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%;">BANKER:</td>
+                                <td style="width: 25%;"><span t-field="o.main_bank_id"/></td>
+                                <td style="width: 10%;">&#160;</td>
+                                <td style="width: 15%;">MARKS:</td>
+                                <td style="width: 30%;"><span t-field="o.marks"/></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div width="100%">
+                            * Documents should be as follows<br/>
+                            1) Invoice,Packing List,Certificate of Analysis &amp; Bill of Lading<br/>
+                            2) Certificate of Origin
+                        </div>
+                        <br/>
+                        <div width="100%">
+                            Insurance cover required from Port of Despatch up to customer's go downs at <br/>
+                            via Colombo including transport to by rail/road, Insurance value required.<br/>
+                        </div>
+                        <br/>
+                        <div width="100%">
+                            Note	:  Goods should be supplied as per the specification provided, deviation will result in,
+                            	   entire consignment being rejected<br/>
+                        </div>
+                        <br/>
+                        <div width="100%">
+                            * Shipping information and Documents should be as follows<br/>
+                              1) Advance shipping details - No sooner vessel is booked<br/>
+                              2) Final shipping details  - No sooner vesel dept.<br/>
+                              3) Documents to be dispatched within two days of departure of vessel
+                        </div>
+                        <br/>
+                        <div width="100%">
+                            * Shipping information and Documents should be as follows<br/>
+                              1) Advance shipping details - No sooner vessel is booked<br/>
+                              2) Final shipping details  - No sooner vesel dept.<br/>
+                              3) Documents to be dispatched within two days of departure of vessel
+                        </div>
+                        <br/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="indent_sheet_paperformat" model="report.paperformat">
+        <field name="name">Indent Sheet Paperformat</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">20</field>
+        <field name="margin_right">20</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">80</field>
+    </record>
+
+    <record id="action_indent_sheet_report" model="ir.actions.report">
+        <field name="name">Indent Sheet</field>
+        <field name="model">indent.sheet</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">altek_indent_process_project_approved.report_indent_sheet</field>
+        <field name="report_file">altek_indent_process_project_approved.report_indent_sheet</field>
+        <field name="binding_model_id" ref="altek_indent_process_project_approved.model_indent_sheet"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

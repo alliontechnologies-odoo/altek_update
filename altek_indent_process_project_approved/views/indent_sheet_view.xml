@@ -1,0 +1,170 @@
+<odoo>
+    <!--    Indent Sheet view and action-->
+    <record id="indent_sheet_form_view" model="ir.ui.view">
+        <field name="name">indent.sheet.form.view</field>
+        <field name="model">indent.sheet</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_sent_to_approval"
+                            string="Send to Approval" type="object"
+                            attrs="{'invisible': [('state', 'not in', ['draft', 'rejected'])]}"/>
+                    <button name="action_approved"
+                            string="Approve" type="object"
+                            attrs="{'invisible': [('state', 'not in', ['sent_to_approval'])]}"
+                            groups="altek_indent_process_project_approved.group_indent_sheet_approval"/>
+                    <button name="action_reject"
+                            string="Reject" type="object"
+                            attrs="{'invisible': [('state', 'not in', ['sent_to_approval'])]}"
+                            groups="altek_indent_process_project_approved.group_indent_sheet_approval"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="supplier_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options='{"always_reload": True}'/>
+                            <field name="supplier_contact_no"/>
+                            <field name="supplier_sector_id" required="1"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="order_id"/>
+                            <field name="company_id"/>
+                            <field name="partner_id" required="1"/>
+                            <field name="customer_po_no" required="1"/>
+                            <field name="customer_po_date" required="1"/>
+                            <field name="incoterm_id" widget='selection' required="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="packing"/>
+                            <field name="shipment" required="1"/>
+                            <field name="port_of_shipment"/>
+                            <field name="main_bank_id"/>
+                            <field name="re_marks"/>
+                            <field name="indent_id" groups="base.group_no_one"/>
+                        </group>
+                        <group>
+                            <field name="hs_code"/>
+                            <field name="finance" required="1"/>
+                            <field name="country_id"/>
+                            <field name="marks"/>
+                            <field name="reference_pi_no" />
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Indent Sheet Lines" name="indent_sheet_line">
+                            <field name="indent_sheet_line">
+                                <tree
+                                        string="Indent Sheet Lines"
+                                        editable="bottom"
+                                >
+                                    <control>
+                                        <create name="add_product_control" string="Add a product"/>
+                                        <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                        <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                    </control>
+
+                                    <field
+                                            name="product_id"
+                                            attrs="{
+                                        }"
+                                            options="{'no_open': True}"
+                                            force_save="1"
+                                            domain="[('sale_ok', '=', True)]"
+                                            widget="product_configurator"
+                                    />
+                                    <field name="product_template_id"
+                                           string="Product"
+                                           invisible="1"
+                                           attrs="{
+                                      }"
+                                           options="{'no_open': True}"
+                                           domain="[('sale_ok', '=', True)]"
+                                           widget="product_configurator"/>
+                                    <field name="name" widget="section_and_note_text" optional="show"/>
+                                    <field
+                                            name="product_uom_qty"
+                                    />
+                                    <field name="price_unit"/>
+                                    <field name="price_subtotal" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                </tree>
+                            </field>
+                            <group name="note_group" col="6" class="mt-2 mt-md-0">
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                    <field name="amount_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="type_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="freight_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="insurance_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                        <label for="grand_total"/>
+                                    </div>
+                                    <field name="grand_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </group>
+                                <div class="oe_clear"/>
+                            </group>
+                        </page>
+                        <page string="Approved / Reject Comments" name="approved_reject_comments" attrs="{'invisible': [('state', 'in', ['draft', 'sent_to_approval'])]}">
+                            <group>
+                                <group>
+                                    <field name="comments" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="indent_sheet_tree_view" model="ir.ui.view">
+        <field name="name">indent.sheet.tree.view</field>
+        <field name="model">indent.sheet</field>
+        <field name="arch" type="xml">
+            <tree string="Indent Sheets" class="o_sale_order" multi_edit="1" sample="1">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="supplier_id"/>
+                <field name="supplier_sector_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="default_indent_sheet_action" model="ir.actions.act_window">
+        <field name="name">Indent Sheet</field>
+        <field name="res_model">indent.sheet</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Indent Sheet
+            </p>
+        </field>
+    </record>
+
+    <record id="indent_sheet_action_button" model="ir.actions.act_window">
+        <field name="name">Indent Sheet</field>
+        <field name="res_model">indent.sheet</field>
+        <field name="view_mode">form,tree</field>
+        <field name="domain">[('indent_id', '=', active_id)]</field>
+        <field name="context">{'search_default_indent_id': active_id, 'default_indent_id': active_id}</field>
+    </record>
+
+    <menuitem id="indent_sheet_menu"
+              action="default_indent_sheet_action"
+              name="Indent Sheet"
+              parent="indent_process_menu"
+              sequence="3"/>
+
+</odoo>

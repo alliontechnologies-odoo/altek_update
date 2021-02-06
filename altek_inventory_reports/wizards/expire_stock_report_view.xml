@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <record id="expire_stock_report_wizard" model="ir.ui.view">
+            <field name="name">expire.stock.report.wizard</field>
+            <field name="model">expire.stock.report.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="from_date" required="1"/>
+                            <field name="to_date" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="download_report" string="Download" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_expire_stock_report_wizard">
+            <field name="name">EXPIRY STOCK</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">expire.stock.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="expire_stock_report_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="inventory_report_2"
+            name="Expiry Stock"
+            parent="menu_inventory_reports_altek"
+            action="action_expire_stock_report_wizard"
+            sequence="2"/>
+    </data>
+</odoo>

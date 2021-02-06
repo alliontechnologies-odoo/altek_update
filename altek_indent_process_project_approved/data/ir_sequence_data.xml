@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequences for indent.process -->
+        <record id="seq_indent_process" model="ir.sequence">
+            <field name="name">Indent Process</field>
+            <field name="code">indent.process</field>
+            <field name="prefix">INDENT/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for indent.sheet -->
+        <record id="seq_indent_sheet" model="ir.sequence">
+            <field name="name">Indent Sheet</field>
+            <field name="code">indent.sheet</field>
+            <field name="prefix">INDENT SHEET/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

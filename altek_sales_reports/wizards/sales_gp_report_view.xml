@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record id="sales_gp_report_wizard" model="ir.ui.view">
+            <field name="name">sales.gp.report.wizard</field>
+            <field name="model">sale.g.p.report.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="from_date" required="1"/>
+                            <field name="to_date" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="download_report" string="Download" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_sales_gp_report_wizard">
+            <field name="name">SALES AND GP REPORT</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.g.p.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sales_gp_report_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_altek_sale_reports"
+                  parent="sale.menu_sale_report"
+                  sequence="11"
+                  name="Altek Sales Reports" />
+
+        <menuitem
+                id="sales_report_1"
+                name="Sales and GP Report"
+                parent="menu_altek_sale_reports"
+                action="action_sales_gp_report_wizard"
+                sequence="1"/>
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record id="slow_moving_report_wizard" model="ir.ui.view">
+            <field name="name">slow.moving.report.wizard</field>
+            <field name="model">slow.moving.report.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="from_date" required="1"/>
+                            <field name="to_date" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="download_report" string="Download" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_slow_moving_report_wizard">
+            <field name="name">SLOW MOVING REPORT - OVER 90 DAYS</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">slow.moving.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="slow_moving_report_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_inventory_reports_altek"
+            parent="stock.menu_warehouse_report"
+            sequence="200"
+            name="Altek Custom Inventory Reports" />
+
+        <menuitem
+            id="inventory_report_1"
+            name="Slow Moving Report - Over 90 Days"
+            parent="menu_inventory_reports_altek"
+            action="action_slow_moving_report_wizard"
+            sequence="1"/>
+    </data>
+</odoo>

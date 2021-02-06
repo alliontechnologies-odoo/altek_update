@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_main_bank,main.bank,local_banks_config.model_main_bank,base.group_user,1,1,1,1
+

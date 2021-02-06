@@ -1,0 +1,16 @@
+<odoo>
+    <!--    Add new fields to the Activity Type view-->
+    <record id="inherit_activity_view" model="ir.ui.view">
+        <field name="name">inherit.activity.view</field>
+        <field name="model">mail.activity.type</field>
+        <field name="inherit_id" ref="mail.mail_activity_type_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='default_description']" position="after">
+                <field name="indent_sheet_approved"/>
+                <field name="customer_payment_follow"/>
+                <field name="create_debit_note"/>
+                <field name="followup_outstanding_payment"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

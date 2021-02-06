@@ -1,0 +1,26 @@
+<odoo>
+    <record id="inherit_view_partner_form" model="ir.ui.view">
+        <field name="name">inherit.view.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//h1" position="after">
+                <h2>
+                    <field name="customer_short_code" default_focus="1" placeholder="Customer Short code" attrs="{'invisible': [('customer_rank','!=', 1)]}" style="width: 405px"/>
+                    <field name="supplier_short_code" default_focus="1" placeholder="Supplier Short Code" attrs="{'invisible': [('supplier_rank','!=', 1)]}" style="width: 405px"/>
+                </h2>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="country_origin" attrs="{'invisible': [('supplier_rank','!=', 1)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="supplier_rank" invisible="1"/>
+                <field name="sector_id"/>
+            </xpath>
+            <xpath expr="//field[@name='property_payment_term_id']" position="after">
+                <field name="customer_rank" invisible="1"/>
+                <field name="currency_id_origin"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
