@@ -11,7 +11,7 @@
                             attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
                     <button name="button_cancel"
                             string="Cancel" type="object"
-                            attrs="{'invisible': [('state', 'in', ['draft', 'cancel'])]}" class="btn-danger"
+                            attrs="{'invisible': [('state', 'in', ['draft', 'cancel', 'payments_recovered'])]}" class="btn-danger"
                             confirm="Are you sure you want to Cancel this indent." />
                     <button string="New Quotation" name="action_sale_quotations_indent" type="object" class="oe_highlight"
                             attrs="{'invisible': [('state', 'not in', ['validate'])]}"/>
