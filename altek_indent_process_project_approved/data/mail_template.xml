@@ -79,7 +79,7 @@
         <field name="name">Email to after Approve Indent Sheet</field>
         <field name="email_from">${(user.email)}</field>
         <field name="subject">${(object.indent_sheet_id.display_name)} has Approved</field>
-        <field name="email_to">${(object.create_uid.email)|safe}</field>
+        <field name="email_to">${(object.indent_sheet_id.indent_id.create_uid.email)|safe}</field>
         <field name="model_id" ref="model_comment_wizard"/>
         <field name="auto_delete" eval="False"/>
         <field name="body_html">
@@ -155,7 +155,7 @@
         <field name="name">Email to after Cancel Indent Sheet</field>
         <field name="email_from">${(user.email)}</field>
         <field name="subject">${(object.indent_sheet_id.display_name)} has Cancelled</field>
-        <field name="email_to">${(object.create_uid.email)|safe}</field>
+        <field name="email_to">${(object.indent_sheet_id.indent_id.create_uid.email)|safe}</field>
         <field name="model_id" ref="model_comment_wizard"/>
         <field name="auto_delete" eval="False"/>
         <field name="body_html">

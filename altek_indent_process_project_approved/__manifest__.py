@@ -24,6 +24,7 @@
         'views/account_move_views.xml',
         'views/indent_view.xml',
         'views/indent_sheet_view.xml',
+        'views/res_company.xml',
         'views/res_partner.xml',
         'views/product_views.xml',
         'views/sale_order_views.xml',
