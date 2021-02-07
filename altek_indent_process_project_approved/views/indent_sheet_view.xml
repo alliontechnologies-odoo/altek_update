@@ -48,7 +48,7 @@
                             <field name="port_of_shipment"/>
                             <field name="main_bank_id"/>
                             <field name="re_marks"/>
-                            <field name="indent_id" groups="base.group_no_one" invisible="1"/>
+                            <field name="indent_id" groups="base.group_no_one" readonly="1" string="Indent Form"/>
                         </group>
                         <group>
                             <field name="hs_code"/>

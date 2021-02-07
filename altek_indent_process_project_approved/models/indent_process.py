@@ -248,10 +248,12 @@ class IndentProcess(models.Model):
 
     def booking_confirmation_received_next(self):
         """Booking confirmation next function"""
-
-        self.sudo().write({
-            'state': 'document_process_complete'
-        })
+        if self.bl_date and self.bl_number:
+            self.sudo().write({
+                'state': 'document_process_complete'
+            })
+        else:
+            raise UserError('Please add BL date & BL Number to got to the next state')
 
     def document_process_complete_next(self):
         """Document Process Complete next function"""
