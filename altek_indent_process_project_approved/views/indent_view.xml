@@ -28,6 +28,9 @@
                     <button name="booking_confirmation_received_next"
                             string="Next" type="object"
                             attrs="{'invisible': [('state', 'not in', ['booking_confirmation_received'])]}"/>
+                    <button name="copy_document_next"
+                            string="Next" type="object"
+                            attrs="{'invisible': [('state', 'not in', ['collect_copy_documents'])]}"/>
                     <button name="document_process_complete_next"
                             string="Next" type="object"
                             attrs="{'invisible': [('state', 'not in', ['document_process_complete'])]}"/>
@@ -192,7 +195,7 @@
                                 </field>
                             </group>
                         </page>
-                        <page string="Documents Check List" attrs="{'invisible': [('state', 'in', ['draft', 'validate', 'rejected', 'awaiting_approval', 'awaiting_order_confirmation', 'order_confirmed'])]}">
+                        <page string="Documents Check List" attrs="{'invisible': [('state', 'in', ['draft', 'validate', 'rejected', 'awaiting_approval', 'awaiting_order_confirmation', 'order_confirmed', 'booking_confirmation_received'])]}">
                             <group>
                                 <field name="received_invoice" />
                                 <field name="received_packing_list" />
@@ -203,7 +206,7 @@
                                 <field name="received_other_docs" />
                             </group>
                         </page>
-                        <page string="Customer Payments Info" attrs="{'invisible': [('state', 'in', ['draft', 'validate', 'rejected', 'awaiting_approval', 'awaiting_order_confirmation', 'order_confirmed', 'booking_confirmation_received', 'document_process_complete'])]}">
+                        <page string="Customer Payments Info" attrs="{'invisible': [('state', 'in', ['draft', 'validate', 'rejected', 'awaiting_approval', 'awaiting_order_confirmation', 'order_confirmed', 'booking_confirmation_received', 'collect_copy_documents', 'document_process_complete'])]}">
                             <group>
                                 <group>
                                     <field name="customer_payment_date" attrs="{'required': [('state', '=', 'customer_payment_followup')]}"/>

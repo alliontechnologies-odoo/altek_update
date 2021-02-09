@@ -15,4 +15,4 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    indent_commission = fields.Float('Indent Commission')
+    indent_commission = fields.Float('Indent Commission (%)')

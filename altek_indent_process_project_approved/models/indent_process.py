@@ -135,6 +135,7 @@ class IndentProcess(models.Model):
         ('awaiting_order_confirmation', 'Awaiting Order Confirmation'),
         ('order_confirmed', 'Order Confirmed'),
         ('booking_confirmation_received', 'Booking Confirmation Received'),
+        ('collect_copy_documents', 'Copy Documents'),
         ('document_process_complete', 'Document Process Completed'),
         ('customer_payment_followup', 'Customer Payments followup'),
         ('pending_debit_note', 'Pending Debit Note'),
@@ -248,6 +249,12 @@ class IndentProcess(models.Model):
 
     def booking_confirmation_received_next(self):
         """Booking confirmation next function"""
+        self.sudo().write({
+            'state': 'collect_copy_documents'
+        })
+
+    def copy_document_next(self):
+        """Copy Document next function"""
         if self.bl_date and self.bl_number:
             self.sudo().write({
                 'state': 'document_process_complete'
@@ -346,7 +353,7 @@ class IndentProcess(models.Model):
             vals.append((0, 0, {'product_id': line.product_id.id,
                                 'name': line.product_id.name,
                                 'product_uom_qty': line.product_uom_qty,
-                                'price_unit': line.price_subtotal}))
+                                'price_unit': line.price_unit}))
         order_id = False
         shipment_id = False
         if self.order_ids:
