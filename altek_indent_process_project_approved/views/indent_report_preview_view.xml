@@ -1,0 +1,86 @@
+<odoo>
+    <!--    Indent Report Preview form view, tree view, action and menu item-->
+    <record id="indent_report_preview_view_from" model="ir.ui.view">
+        <field name="name">indent.report.preview.view.form</field>
+        <field name="model">indent.report.preview</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false">
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="supplier_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'supplier', 'show_address': 1, 'show_vat': True}" options='{"always_reload": True}'/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <group>
+                            <field name="description"/>
+                            <field name="currency_id" invisible="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Product Lines" name="indent_report_preview_line">
+                            <field name="indent_report_preview_line">
+                                <tree string="Product Lines">
+                                    <field name="invoice_no" optional="show"/>
+                                    <field name="invoice_date" optional="show"/>
+                                    <field name="indent_sheet" optional="show"/>
+                                    <field name="customer" optional="show"/>
+                                    <field name="product" optional="show"/>
+                                    <field name="qty" optional="show"/>
+                                    <field name="value" optional="show" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <field name="commission" optional="show" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                </tree>
+                            </field>
+                            <group name="note_group" col="6" class="mt-2 mt-md-0">
+                                <group colspan="4">
+                                </group>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                    <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                        <label for="amount_total" />
+                                    </div>
+                                    <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <field name="check_amount_in_words" invisible="1"/>
+                                </group>
+                                <div class="oe_clear"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="indent_report_preview_view_tree" model="ir.ui.view">
+        <field name="name">indent.report.preview.view.tree</field>
+        <field name="model">indent.report.preview</field>
+        <field name="arch" type="xml">
+            <tree string="Indent Report Preview" sample="1">
+                <field name="name"/>
+                <field name="supplier_id"/>
+                <field name="date"/>
+                <field name="amount_total"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="indent_report_preview_action" model="ir.actions.act_window">
+        <field name="name">Indent Report Preview</field>
+        <field name="res_model">indent.report.preview</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="indent_report_preview_menu"
+              action="indent_report_preview_action"
+              name="Indent Report Preview"
+              parent="indent_process_main_menu_reports"
+              sequence="2"/>
+
+</odoo>

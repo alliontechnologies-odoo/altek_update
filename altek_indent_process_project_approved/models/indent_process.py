@@ -148,7 +148,6 @@ class IndentProcess(models.Model):
     etd = fields.Date(string="ETD", help="Estimated Time of Departure", tracking=8)
     eta = fields.Date(string="ETA", help="Estimated Time of Arrival", tracking=9)
     order_line = fields.One2many('indent.process.line', 'indent_id', string='Indent Lines', copy=True, auto_join=True)
-    order_invoice_line = fields.One2many('indent.invoice.line', 'indent_id', string='Indent Lines', copy=True, auto_join=True)
     currency_id = fields.Many2one('res.currency', string='Currency', required=True)
     amount_total = fields.Monetary(string='Total', store=True, readonly=True, compute='_amount_all', tracking=10)
     commission_amount_total = fields.Monetary(string='Commission Total', store=True, readonly=True,
@@ -193,6 +192,7 @@ class IndentProcess(models.Model):
     debit_note_created = fields.Boolean(string='Debit Note Created', default=False)
     invoice_ids = fields.Many2many("account.move", string='Invoices', readonly=True,
                                    copy=False, search="_search_invoice_ids")
+    get_for_the_report = fields.Boolean(string='Report Generated', default=False)
 
     def view_activities(self):
         """View related current activities"""
@@ -225,9 +225,11 @@ class IndentProcess(models.Model):
 
     def button_cancel(self):
         """Indent Sheet Cancel Function"""
-        if self.order_invoice_line:
-            raise UserError('You cannot cancel Indent when invoice details already added.')
-        else:
+        if self.order_line:
+            for invoice in self.order_line:
+                if invoice.invoice_number:
+                    raise UserError('You cannot cancel Indent when invoice details already added.')
+
             self.sudo().write({
                 'state': 'cancel'
             })
@@ -777,6 +779,8 @@ class IndentProcessLine(models.Model):
     ], string='Commission Type', default='percentage')
     commission_amount = fields.Float('Commission Amount', default=0.0)
     commission_percentage = fields.Float('Commission Percentage', default=0.0)
+    invoice_number = fields.Char(string="Invoice Number")
+    invoice_date = fields.Date(string="Invoice Date")
 
     @api.depends('product_uom_qty', 'price_unit', 'commission_type', 'commission_amount', 'commission_percentage')
     def _compute_amount(self):
@@ -808,15 +812,6 @@ class IndentProcessLine(models.Model):
             vals['name'] = self.product_id.name
             vals['commission_percentage'] = self.product_id.indent_commission
         self.update(vals)
-
-
-class IndentInvoiceLine(models.Model):
-    _name = 'indent.invoice.line'
-
-    indent_id = fields.Many2one('indent.process', string='Indent Reference', required=True, ondelete='cascade', index=True, copy=False)
-    so_number = fields.Char(string="SO Number")
-    invoice_number = fields.Char(string="Invoice Number", required=1)
-    invoice_date = fields.Date(string="Invoice Date", required=1)
 
 
 class IndentProcessActivities(models.Model):

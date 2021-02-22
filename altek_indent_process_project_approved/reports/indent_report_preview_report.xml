@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_indent_report_preview">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-family: Times new Roman;">
+                        <div width="100%">
+                            <center><b><h2>INVOICE</h2></b></center>
+                        </div>
+                        <br/>
+                        <table width="100%">
+                            <tr>
+                                <td style="padding:5px; width: 5%;"><b>No  :</b></td>
+                                <td style="padding:5px; width: 75%;" class="text-left"><b><span t-field="o.name"/></b></td>
+                                <td style="padding:5px; width: 10%;"><b>Date :</b></td>
+                                <td style="padding:5px; width: 105%;" class="text-left"><b><span t-field="o.date"/></b></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:5px;"><b>To  :</b></td>
+                                <td style="padding:5px;" class="text-left"><span t-esc="o.supplier_id" t-options='{"widget": "contact", "fields": ["name","address","phone"], "no_marker": True}'/></td>
+                                <td style="padding:5px;">&#160;</td>
+                                <td style="padding:5px;" class="text-left">&#160;</td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table width="100%">
+                            <tr>
+                                <td style="border: solid 1px; padding:5px; font-size: 24px;" colspan="7"><b>Description</b></td>
+                                <td style="border: solid 1px; padding:5px">Amount</td>
+                            </tr>
+                            <tr>
+                                <td style="border: solid 1px; padding:5px;" colspan="7"><span t-field="o.description"/></td>
+                                <td style="border: solid 1px; padding:5px"><span t-field="o.amount_total"/></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" style="border: solid 1px; padding:5px"><b>Invoice No. &amp; Date</b></td>
+                                <td class="text-center" style="border: solid 1px; padding:5px"><b>Indent sheet</b></td>
+                                <td class="text-center" style="border: solid 1px; padding:5px"><b>Customer</b></td>
+                                <td class="text-center" style="border: solid 1px; padding:5px"><b>Product</b></td>
+                                <td class="text-center" style="border: solid 1px; padding:5px"><b>Quantity in Kgs</b></td>
+                                <td class="text-center" style="border: solid 1px; padding:5px"><b>Value</b></td>
+                                <td class="text-center" style="border: solid 1px; padding:5px"><b>Commission</b></td>
+                                <td class="text-center" style="border-right: solid 1px; padding:5px">&#160;</td>
+                            </tr>
+                            <tr t-foreach="o.indent_report_preview_line" t-as="l">
+                                <td style="border: solid 1px; padding:5px" class="text-left"><span t-field="l.invoice_no"/></td>
+                                <td style="border: solid 1px; padding:5px" class="text-left"><span t-field="l.indent_sheet"/></td>
+                                <td style="border: solid 1px; padding:5px" class="text-left"><span t-field="l.customer"/></td>
+                                <td style="border: solid 1px; padding:5px" class="text-left"><span t-field="l.product"/></td>
+                                <td style="border: solid 1px; padding:5px" class="text-right"><span t-field="l.qty"/></td>
+                                <td style="border: solid 1px; padding:5px" class="text-right"><span t-field="l.value"/></td>
+                                <td style="border: solid 1px; padding:5px" class="text-right"><span t-field="l.commission"/></td>
+                                <td style="border-right: solid 1px; padding:5px">&#160;</td>
+                            </tr>
+                            <tr>
+                                <td style="border: solid 1px; padding:5px" colspan="7">&#160;&#160;&#160;&#160;<b>Total</b></td>
+                                <td style="border: solid 1px; padding:5px"><b><span t-field="o.amount_total"/></b></td>
+                            </tr>
+                        </table>
+                        <div width="100%">
+                            Amount in Words:<br/>
+                            <span t-field="o.check_amount_in_words"/>&#160; ONLY
+                        </div>
+                        <br/>
+                        <div width="100%">
+                            Amount Transfer to Below given Bank Account Number<br/>
+                            &#160;&#160;&#160;&#160;&#160;Commercial Bank of Ceylon Plc<br/>
+                            &#160;&#160;&#160;&#160;&#160;Duplication Road Branch<br/>
+                            &#160;&#160;&#160;&#160;&#160;No.405/407 R.A.De Mel Mawatha<br/>
+                            &#160;&#160;&#160;&#160;&#160;Colombo 03, Sri Lanka.<br/>
+                        </div>
+                        <br/>
+                        <div width="100%">
+                            Name             :            <span t-field="o.company_id.name"/><br/>
+                            Acc.Number       :            <span t-field="o.company_id.account_number"/><br/>
+                            Swift Code       :            <span t-field="o.company_id.swift_code"/><br/>
+                        </div>
+                        <br/>
+                        <div width="100%">
+                            Authorized by :     …...................................
+                        </div>
+                        <br/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="indent_report_preview_paperformat" model="report.paperformat">
+        <field name="name">Indent Report Preview Paperformat</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">20</field>
+        <field name="margin_right">20</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">80</field>
+    </record>
+
+    <record id="action_indent_report_preview" model="ir.actions.report">
+        <field name="name">Indent Report Preview</field>
+        <field name="model">indent.report.preview</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">altek_indent_process_project_approved.report_indent_report_preview</field>
+        <field name="report_file">altek_indent_process_project_approved.report_indent_report_preview</field>
+        <field name="binding_model_id" ref="altek_indent_process_project_approved.model_indent_report_preview"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

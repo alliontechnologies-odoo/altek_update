@@ -147,9 +147,9 @@
                                            domain="[('sale_ok', '=', True)]"
                                            widget="product_configurator"/>
                                     <field name="name" widget="section_and_note_text" optional="show"/>
-                                    <field
-                                            name="product_uom_qty"
-                                    />
+                                    <field name="invoice_number" optional="show"/>
+                                    <field name="invoice_date" optional="show"/>
+                                    <field name="product_uom_qty"/>
                                     <field name="price_unit"/>
                                     <field name="commission_type"/>
                                     <field name="commission_percentage" attrs="{'invisible': [('commission_type','!=', 'percentage')]}" optional="show"/>
@@ -177,22 +177,6 @@
                                     <field name="so_number"/>
                                     <field name="so_date"/>
                                 </group>
-                                <field name="order_invoice_line">
-                                    <tree
-                                            string="Sales Order Invoice Lines"
-                                            editable="bottom"
-                                    >
-                                        <control>
-                                            <create name="add_product_control" string="Add a Invoice"/>
-                                            <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
-                                            <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
-                                        </control>
-
-                                        <field name="so_number" invisible="1"/>
-                                        <field name="invoice_number"/>
-                                        <field name="invoice_date" />
-                                    </tree>
-                                </field>
                             </group>
                         </page>
                         <page string="Documents Check List" attrs="{'invisible': [('state', 'in', ['draft', 'validate', 'rejected', 'awaiting_approval', 'awaiting_order_confirmation', 'order_confirmed', 'booking_confirmation_received'])]}">
@@ -260,10 +244,15 @@
               parent="sale.sale_menu_root"
               sequence="2"/>
 
+    <menuitem id="indent_process_main_menu"
+              name="Operations"
+              parent="indent_process_menu"
+              sequence="1"/>
+
     <menuitem id="indent_process_sub_menu"
               action="indent_process_action"
               name="Indent Process"
-              parent="indent_process_menu"
+              parent="indent_process_main_menu"
               sequence="1"/>
 
 </odoo>

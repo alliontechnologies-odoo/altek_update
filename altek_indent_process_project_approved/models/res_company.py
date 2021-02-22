@@ -21,3 +21,5 @@ class Company(models.Model):
     _inherit = "res.company"
 
     short_code = fields.Char('Company Short Code')
+    account_number = fields.Char('Account Number')
+    swift_code = fields.Char('Swift Code')

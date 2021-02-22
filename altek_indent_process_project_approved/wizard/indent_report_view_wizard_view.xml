@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Indent Report wizard and action-->
+    <record id="indent_report_view_wizard_form" model="ir.ui.view">
+        <field name="name">indent.report.view.wizard.form</field>
+        <field name="model">indent.report.view.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Indent Commission Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="supplier_id" widget="selection"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string='Preview' name="preview" type="object" class="btn-primary"/>
+                    <button string="Abort" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="indent_report_view_wizard_action" model="ir.actions.act_window">
+        <field name="name">Indent Commission Report</field>
+        <field name="res_model">indent.report.view.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="indent_report_view_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="indent_process_main_menu_reports"
+              name="Reports"
+              parent="indent_process_menu"
+              sequence="2"/>
+
+    <menuitem id="indent_process_sub_menu_report"
+              action="indent_report_view_wizard_action"
+              name="Indent Commission Report"
+              parent="indent_process_main_menu_reports"
+              sequence="1"/>
+</odoo>

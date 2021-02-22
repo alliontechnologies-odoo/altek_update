@@ -21,5 +21,14 @@
             <field name="company_id" eval="False"/>
         </record>
 
+        <!-- Sequences for indent.report.preview -->
+        <record id="seq_indent_report_preview" model="ir.sequence">
+            <field name="name">Indent Report Preview</field>
+            <field name="code">indent.report.preview</field>
+            <field name="prefix">ACT-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
     </data>
 </odoo>

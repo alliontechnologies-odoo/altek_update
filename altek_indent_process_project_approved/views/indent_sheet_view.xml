@@ -172,13 +172,13 @@
     <menuitem id="indent_sheet_menu"
               action="default_indent_sheet_action"
               name="Indent Sheet"
-              parent="indent_process_menu"
+              parent="indent_process_main_menu"
               sequence="3"/>
 
     <menuitem id="indent_sheet_menu_to_approve"
               action="indent_sheet_action_to_approval"
               name="Indent Sheets to Approve"
-              parent="indent_process_menu"
+              parent="indent_process_main_menu"
               groups="altek_indent_process_project_approved.group_indent_sheet_approval"
               sequence="4"/>
 
