@@ -28,7 +28,6 @@
         'views/res_partner.xml',
         'views/product_views.xml',
         'views/sale_order_views.xml',
-        'views/indent_report_preview_view.xml',
         'data/mail_activity_data.xml',
         'wizard/assign_user_view.xml',
         'wizard/comment_view.xml',
@@ -36,6 +35,7 @@
         'wizard/indent_report_view_wizard_view.xml',
         'data/product_data.xml',
         'reports/indent_sheet_report.xml',
+        'views/indent_report_preview_view.xml',
         'reports/indent_report_preview_report.xml'
     ],
     'demo': [],
