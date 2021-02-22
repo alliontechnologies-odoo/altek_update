@@ -62,7 +62,7 @@
         <field name="name">indent.report.preview.view.tree</field>
         <field name="model">indent.report.preview</field>
         <field name="arch" type="xml">
-            <tree string="Indent Report Preview" sample="1">
+            <tree string="Indent Report Preview" sample="1" create="false" edit="false">
                 <field name="name"/>
                 <field name="supplier_id"/>
                 <field name="date"/>
