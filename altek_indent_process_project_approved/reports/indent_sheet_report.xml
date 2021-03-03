@@ -13,7 +13,7 @@
 <!--                            <tr><td class="text-center" style="padding-left:5px;"><b><u>INDENT SHEET</u></b></td></tr>-->
                             <tr><td class="text-right" style="padding-left:5px;">Date : <span t-field="o.date"/></td></tr>
                             <tr><td class="text-center" style="padding-left:5px;"><h5><b><span t-field="o.supplier_sector_id"/></b></h5></td></tr>
-                            <tr><td class="text-center" style="padding-left:5px;"><h5><b>ORDER NO: <span t-field="o.order_id"/></b></h5></td></tr>
+                            <tr><td class="text-center" style="padding-left:5px;"><h5><b>ORDER NO: <span t-field="o.name"/></b></h5></td></tr>
                         </table>
                         <table style="width: 100%;" id="total">
                             <tr>
