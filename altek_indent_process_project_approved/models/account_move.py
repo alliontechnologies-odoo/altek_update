@@ -12,6 +12,7 @@ class AccountMove(models.Model):
 
     indent_id = fields.Many2one('indent.process', string='Indent Process')
 
+    #add
     def action_post(self):
         return_objects = super(AccountMove, self).action_post()
         if self:
