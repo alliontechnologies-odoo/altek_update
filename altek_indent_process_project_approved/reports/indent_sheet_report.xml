@@ -10,7 +10,7 @@
                             <tr><td class="text-center" style="padding-left:5px"><span><span t-field="o.company_id.street"/>, <span t-field="o.company_id.street2"/>, <span t-field="o.company_id.city"/>, <span t-field="o.company_id.country_id"/></span></td></tr>
                             <tr><td class="text-center" style="padding-left:5px;">Tel/Fax No. - &#160;<span t-field="o.company_id.phone"/></td></tr>
                             <tr><td class="text-center" style="padding-left:5px;">&#160;</td></tr>
-<!--                            <tr><td class="text-center" style="padding-left:5px;"><b><u>INDENT SHEET</u></b></td></tr>-->
+                            <!--                            <tr><td class="text-center" style="padding-left:5px;"><b><u>INDENT SHEET</u></b></td></tr>-->
                             <tr><td class="text-right" style="padding-left:5px;">Date : <span t-field="o.date"/></td></tr>
                             <tr><td class="text-center" style="padding-left:5px;"><h5><b><span t-field="o.supplier_sector_id"/></b></h5></td></tr>
                             <tr><td class="text-center" style="padding-left:5px;"><h5><b>ORDER NO: <span t-field="o.name"/></b></h5></td></tr>
@@ -38,17 +38,21 @@
                                             <td style="padding:5px; width: 30%;"><b>Ref. Customer PO Date :</b></td>
                                             <td style="padding:5px; width: 10%;" class="text-right"><b><span t-field="o.customer_po_date"/></b></td>
                                         </tr>
+                                        <tr>
+                                            <td width="50%" class="text-left" style="padding-left:5px"><span>On behalf of Messers</span></td>
+                                            <td width="50%" class="text-right" style="padding-left:5px"><b><span t-esc="o.partner_id" t-options='{"widget": "contact", "fields": ["name","address"], "no_marker": True}'/></b></td>
+                                        </tr>
                                     </table>
                                 </td>
                             </tr>
                         </table>
                         <br/>
-                        <table width="100%">
-                            <tr>
-                                <td width="50%" class="text-right" style="padding-left:5px"><span>On behalf of Messers</span></td>
-                                <td width="50%" class="text-left" style="padding-left:5px"><b><span t-esc="o.partner_id" t-options='{"widget": "contact", "fields": ["name","address"], "no_marker": True}'/></b></td>
-                            </tr>
-                        </table>
+<!--                        <table width="100%">-->
+<!--                            <tr>-->
+<!--                                <td width="50%" class="text-right" style="padding-left:5px"><span>On behalf of Messers</span></td>-->
+<!--                                <td width="50%" class="text-left" style="padding-left:5px"><b><span t-esc="o.partner_id" t-options='{"widget": "contact", "fields": ["name","address"], "no_marker": True}'/></b></td>-->
+<!--                            </tr>-->
+<!--                        </table>-->
                         <table style="width: 100%;">
                             <thead>
                                 <tr>
@@ -156,14 +160,14 @@
                         <br/>
                         <div width="100%">
                             Note	:  Goods should be supplied as per the specification provided, deviation will result in,
-                            	   entire consignment being rejected<br/>
+                            entire consignment being rejected<br/>
                         </div>
                         <br/>
                         <div width="100%">
                             * Shipping information and Documents should be as follows<br/>
-                              1) Advance shipping details - No sooner vessel is booked<br/>
-                              2) Final shipping details  - No sooner vesel dept.<br/>
-                              3) Documents to be dispatched within two days of departure of vessel
+                            1) Advance shipping details - No sooner vessel is booked<br/>
+                            2) Final shipping details  - No sooner vesel dept.<br/>
+                            3) Documents to be dispatched within two days of departure of vessel
                         </div>
                     </div>
                 </t>
