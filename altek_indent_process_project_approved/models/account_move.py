@@ -14,8 +14,8 @@ class AccountMove(models.Model):
 
     def action_post(self):
         return_objects = super(AccountMove, self).action_post()
-        if return_objects:
-            for obj in return_objects:
+        if self:
+            for obj in self:
                 if obj.indent_id:
                     obj.indent_id.activity_ids._action_done()
 
