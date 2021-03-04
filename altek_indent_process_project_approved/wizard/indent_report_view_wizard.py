@@ -10,6 +10,7 @@ class IndentReportViewWizard(models.TransientModel):
     start_date = fields.Date(string="Start Date", required=1)
     end_date = fields.Date(string="End Date", required=1)
     supplier_id = fields.Many2one('res.partner', string="Supplier", domain="[('supplier_rank','=', 1)]", required=1)
+    bank_id = fields.Many2one('res.partner.bank', string="Bank Account", required=1)
 
     def preview(self):
         indent_list = []
@@ -30,23 +31,21 @@ class IndentReportViewWizard(models.TransientModel):
                     indent_list.append(indent.get('indent_process_id'))
         currency_id = None
         vals = []
+        indent_list = list(dict.fromkeys(indent_list))
         for indent in indent_list:
             indent_obj = self.env['indent.process'].search([('id', '=', indent),
-                                                            ('state', '=', 'commission_payment_followup'),
-                                                            ('get_for_the_report', '!=', True)])
+                                                            ('state', '=', 'commission_payment_followup')])
             if indent_obj:
                 for line in indent_obj.order_line:
-                    vals.append((0, 0, {'invoice_no': line.invoice_number,
-                                        'invoice_date': line.invoice_date,
-                                        'indent_sheet': indent_obj.indent_ids[0].name,
-                                        'customer': indent_obj.partner_id.name,
-                                        'product': line.product_id.name,
-                                        'qty': line.product_uom_qty,
-                                        'value': line.price_subtotal,
-                                        'commission': line.commission_amount}))
-                indent_obj.write({
-                    'get_for_the_report': True,
-                })
+                    if line.payment_recovered == False:
+                        vals.append((0, 0, {'invoice_no': line.invoice_number,
+                                            'invoice_date': line.invoice_date,
+                                            'indent_sheet': indent_obj.indent_ids[0].name,
+                                            'customer': indent_obj.partner_id.name,
+                                            'product': line.product_id.name,
+                                            'qty': line.product_uom_qty,
+                                            'value': line.price_subtotal,
+                                            'commission': line.commission_amount}))
                 currency_id = indent_obj.currency_id.id
             else:
                 raise UserError('No data for the report')
@@ -57,6 +56,7 @@ class IndentReportViewWizard(models.TransientModel):
             'date': fields.Date.today(),
             'description': 'Indent Commission from ' + str(self.start_date) + ' to ' + str(self.end_date) + ' - ' + str(self.supplier_id.name),
             'currency_id': currency_id,
+            'bank_id': self.bank_id.id,
             'indent_report_preview_line': vals,
         }]
 

@@ -15,6 +15,7 @@ from odoo.http import request
 class IndentSector(models.Model):
     _name = 'indent.sector'
 
+    code = fields.Char(string="Code", required=True)
     name = fields.Char(string="Sector", required=True)
 
 
@@ -192,7 +193,6 @@ class IndentProcess(models.Model):
     debit_note_created = fields.Boolean(string='Debit Note Created', default=False)
     invoice_ids = fields.Many2many("account.move", string='Invoices', readonly=True,
                                    copy=False, search="_search_invoice_ids")
-    get_for_the_report = fields.Boolean(string='Report Generated', default=False)
 
     def view_activities(self):
         """View related current activities"""
@@ -408,7 +408,7 @@ class IndentProcess(models.Model):
     def action_view_indent_sheet(self):
         """Redirect to the specific Indent Sheet related to indent process when click the Indent Sheet smart button"""
         self.ensure_one()
-        action = self.env.ref('altek_indent_process_project_approved.default_indent_sheet_action').read()[0]
+        action = self.env.ref('altek_indent_process_project_approved.default_indent_sheet_action').sudo().read()[0]
         action['domain'] = [('indent_id', '=', self.id)]
         action['view_mode'] = 'tree'
         return action
@@ -759,7 +759,7 @@ class IndentProcess(models.Model):
 class IndentProcessLine(models.Model):
     _name = 'indent.process.line'
 
-    indent_id = fields.Many2one('indent.process', string='Indent Reference', required=True, ondelete='cascade', index=True, copy=False)
+    indent_id = fields.Many2one('indent.process', string='Indent No', required=True, ondelete='cascade', index=True, copy=False)
     name = fields.Text(string='Description', required=True)
     product_id = fields.Many2one(
         'product.product', string='Product', domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), "
@@ -781,6 +781,7 @@ class IndentProcessLine(models.Model):
     commission_percentage = fields.Float('Commission Percentage', default=0.0)
     invoice_number = fields.Char(string="Invoice Number")
     invoice_date = fields.Date(string="Invoice Date")
+    payment_recovered = fields.Boolean(string='Payment Recovered', default=False)
 
     @api.depends('product_uom_qty', 'price_unit', 'commission_type', 'commission_amount', 'commission_percentage')
     def _compute_amount(self):

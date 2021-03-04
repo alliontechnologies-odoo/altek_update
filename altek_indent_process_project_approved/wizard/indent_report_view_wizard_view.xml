@@ -20,6 +20,11 @@
                             <field name="end_date"/>
                         </group>
                     </group>
+                    <group>
+                        <group>
+                            <field name="bank_id" widget="selection"/>
+                        </group>
+                    </group>
                 </sheet>
                 <footer>
                     <button string='Preview' name="preview" type="object" class="btn-primary"/>

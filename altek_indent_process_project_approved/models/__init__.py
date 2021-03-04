@@ -1,6 +1,7 @@
 from . import sequence_mixin
 from . import indent_process
 from . import res_company
+from . import res_partner_bank
 from . import sale_order
 from . import res_partner
 from . import product_template

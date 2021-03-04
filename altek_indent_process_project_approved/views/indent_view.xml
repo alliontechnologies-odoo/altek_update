@@ -155,6 +155,7 @@
                                     <field name="commission_percentage" attrs="{'invisible': [('commission_type','!=', 'percentage')]}" optional="show"/>
                                     <field name="commission_amount" attrs="{'readonly': [('commission_type','!=', 'fixed')]}" optional="show"/>
                                     <field name="price_subtotal" widget="monetary" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                    <field name="payment_recovered" optional="show"/>
                                 </tree>
                             </field>
                             <group name="note_group" col="6" class="mt-2 mt-md-0">
@@ -213,7 +214,7 @@
         <field name="name">indent.process.tree.view</field>
         <field name="model">indent.process</field>
         <field name="arch" type="xml">
-            <tree string="Indent Process" class="o_sale_order" multi_edit="1" sample="1">
+            <tree string="Indent" class="o_sale_order" multi_edit="1" sample="1">
                 <field name="name"/>
                 <field name="partner_id" readonly="1"/>
                 <field name="customer_expected_date" widget="date" optional="hide"/>
@@ -229,12 +230,12 @@
     </record>
 
     <record id="indent_process_action" model="ir.actions.act_window">
-        <field name="name">Indent Process</field>
+        <field name="name">Indent</field>
         <field name="res_model">indent.process</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Create a new Indent Process
+                Create a new Indent
             </p>
         </field>
     </record>
@@ -251,7 +252,7 @@
 
     <menuitem id="indent_process_sub_menu"
               action="indent_process_action"
-              name="Indent Process"
+              name="Indent"
               parent="indent_process_main_menu"
               sequence="1"/>
 

@@ -5,6 +5,7 @@
         <field name="model">indent.sector</field>
         <field name="arch" type="xml">
             <tree editable="bottom" multi_edit="1" sample="1">
+                <field name="code"/>
                 <field name="name"/>
             </tree>
         </field>

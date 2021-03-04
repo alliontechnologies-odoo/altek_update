@@ -58,6 +58,7 @@
                                 <td style="border: solid 1px; padding:5px"><b><span t-field="o.amount_total"/></b></td>
                             </tr>
                         </table>
+                        <br/>
                         <div width="100%">
                             Amount in Words:<br/>
                             <span t-field="o.check_amount_in_words"/>&#160; ONLY
@@ -65,16 +66,16 @@
                         <br/>
                         <div width="100%">
                             Amount Transfer to Below given Bank Account Number<br/>
-                            &#160;&#160;&#160;&#160;&#160;Commercial Bank of Ceylon Plc<br/>
-                            &#160;&#160;&#160;&#160;&#160;Duplication Road Branch<br/>
-                            &#160;&#160;&#160;&#160;&#160;No.405/407 R.A.De Mel Mawatha<br/>
-                            &#160;&#160;&#160;&#160;&#160;Colombo 03, Sri Lanka.<br/>
+                            &#160;&#160;&#160;&#160;&#160;<span t-field="o.bank_id.main_bank_id"/><br/>
+                            &#160;&#160;&#160;&#160;&#160;<span t-field="o.bank_id.bank_id"/><br/>
+                            &#160;&#160;&#160;&#160;&#160;<span t-field="o.bank_id.bank_id.street"/>, <span t-field="o.bank_id.bank_id.street2"/><br/>
+                            &#160;&#160;&#160;&#160;&#160;<span t-field="o.bank_id.bank_id.city"/>, <span t-field="o.bank_id.bank_id.country"/>.<br/>
                         </div>
                         <br/>
                         <div width="100%">
                             Name             :            <span t-field="o.company_id.name"/><br/>
-                            Acc.Number       :            <span t-field="o.company_id.account_number"/><br/>
-                            Swift Code       :            <span t-field="o.company_id.swift_code"/><br/>
+                            Acc.Number       :            <span t-field="o.bank_id"/><br/>
+                            Swift Code       :            <span t-field="o.bank_id.swift_code"/><br/>
                         </div>
                         <br/>
                         <div width="100%">

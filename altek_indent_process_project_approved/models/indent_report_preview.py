@@ -48,6 +48,7 @@ class IndentReportPreview(models.Model):
                                                  string='Report Lines', copy=True, auto_join=True, readonly=True)
     currency_id = fields.Many2one('res.currency', string='Currency')
     check_amount_in_words = fields.Char(string="Amount in Words", compute='_compute_check_amount_in_words')
+    bank_id = fields.Many2one('res.partner.bank', string="Bank Account")
 
 
 class IndentReportPreviewLine(models.Model):

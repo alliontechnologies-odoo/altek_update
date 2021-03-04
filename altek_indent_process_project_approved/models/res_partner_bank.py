@@ -17,7 +17,7 @@ from PIL import Image
 _logger = logging.getLogger(__name__)
 
 
-class Company(models.Model):
-    _inherit = "res.company"
+class Bank(models.Model):
+    _inherit = "res.partner.bank"
 
-    short_code = fields.Char('Company Short Code')
+    swift_code = fields.Char('Swift Code')

@@ -157,9 +157,10 @@ class IndentSheet(models.Model):
         if vals.get('name', _('New')) == _('New'):
             auto_generated = self.env['ir.sequence'].next_by_code('indent.sheet') or _('New')
             company_short_code = self.env['res.company'].browse(vals['company_id']).short_code or ''
+            sector_code = self.env['indent.sector'].browse(vals['supplier_sector_id']).code or ''
             customer_short_code = self.env['res.partner'].browse(vals['partner_id']).customer_short_code or ''
             supplier_short_code = self.env['res.partner'].browse(vals['supplier_id']).supplier_short_code or ''
-            vals['name'] = company_short_code + '/' + supplier_short_code + '/' + customer_short_code + '/' + auto_generated or _('New')
+            vals['name'] = company_short_code + '/' + sector_code + '/' +supplier_short_code + '/' + customer_short_code + '/' + auto_generated or _('New')
         if vals['name']:
             customer_short_code = self.env['res.partner'].browse(vals['partner_id']).customer_short_code or ''
             supplier_short_code = self.env['res.partner'].browse(vals['supplier_id']).supplier_short_code or ''

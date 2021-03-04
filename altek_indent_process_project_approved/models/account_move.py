@@ -12,7 +12,6 @@ class AccountMove(models.Model):
 
     indent_id = fields.Many2one('indent.process', string='Indent Process')
 
-    #add comment
     def action_post(self):
         return_objects = super(AccountMove, self).action_post()
         if self:
@@ -29,7 +28,7 @@ class AccountMove(models.Model):
                             number_of_days += days.days
                     due_date = self.invoice_date + timedelta(days=number_of_days)
 
-                    self.env['mail.activity'].sudo().create({
+                    self.env['mail.activity'].create({
                         'res_model_id': model_id.id,
                         'res_model': model_id.model,
                         'res_id': obj.indent_id.id,
@@ -40,7 +39,7 @@ class AccountMove(models.Model):
                         'date_deadline': due_date,
                         'user_id': activity_obj.default_user_id.id,
                     })
-                    obj.indent_id.sudo().write({
+                    obj.indent_id.write({
                         'debit_note_created': True,
                         'state': 'commission_payment_followup'
                     })
@@ -64,7 +63,7 @@ class AccountMove(models.Model):
                                 number_of_days += days.days
                         due_date = self.invoice_date + timedelta(days=number_of_days)
 
-                        self.env['mail.activity'].sudo().create({
+                        self.env['mail.activity'].create({
                             'res_model_id': model_id.id,
                             'res_model': model_id.model,
                             'res_id': indent_obj.id,
@@ -75,7 +74,7 @@ class AccountMove(models.Model):
                             'date_deadline': due_date,
                             'user_id': activity_obj.default_user_id.id,
                         })
-                        indent_obj.sudo().write({
+                        indent_obj.write({
                             'debit_note_created': True,
                             'state': 'commission_payment_followup'
                         })

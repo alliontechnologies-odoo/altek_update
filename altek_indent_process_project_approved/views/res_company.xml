@@ -6,8 +6,6 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='favicon']" position="after">
                 <field name="short_code"/>
-                <field name="account_number"/>
-                <field name="swift_code"/>
             </xpath>
         </field>
     </record>

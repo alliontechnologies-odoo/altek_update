@@ -31,12 +31,12 @@
                                 <td style="width: 40%;">
                                     <table>
                                         <tr>
-                                            <td style="padding:5px; width: 25%;"><b>Ref. Customer PO No.  :</b></td>
-                                            <td style="padding:5px; width: 15%;" class="text-left"><b><span t-field="o.customer_po_no"/></b></td>
+                                            <td style="padding:5px; width: 30%;"><b>Ref. Customer PO No.  :</b></td>
+                                            <td style="padding:5px; width: 10%;" class="text-right"><b><span t-field="o.customer_po_no"/></b></td>
                                         </tr>
                                         <tr>
-                                            <td style="padding:5px; width: 25%;"><b>Ref. Customer PO Date :</b></td>
-                                            <td style="padding:5px; width: 15%;" class="text-left"><b><span t-field="o.customer_po_date"/></b></td>
+                                            <td style="padding:5px; width: 30%;"><b>Ref. Customer PO Date :</b></td>
+                                            <td style="padding:5px; width: 10%;" class="text-right"><b><span t-field="o.customer_po_date"/></b></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -55,91 +55,60 @@
                                     <td colspan="6">Item ( Description,Quality and Quantity)</td>
                                 </tr>
                                 <tr>
-                                    <th style="width: 10%;" class="text-center">&#160;</th>
                                     <th style="width: 5%;" class="text-center">&#160;</th>
                                     <th style="width: 35%;" class="text-center">&#160;</th>
-                                    <td style="width: 15%;" class="text-right"><u>KGS</u></td>
+                                    <td style="width: 20%;" class="text-right"><u>KGS</u></td>
                                     <td style="width: 15%;" class="text-right"><u>US$/KG</u></td>
+                                    <td style="width: 5%;" class="text-right">&#160;</td>
                                     <td style="width: 20%;" class="text-right"><u>US$/CFR/COL(SEA)</u></td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-set="i" t-value="1"/>
                                 <tr t-foreach="o.indent_sheet_line" t-as="l">
-                                    <td class="text-center">&#160;</td>
-                                    <td class="text-center"><span t-esc="i"/>)</td>
-                                    <td class="text-center"><span t-field="l.product_id.display_name"/></td>
+                                    <td class="text-left"><span t-esc="i"/>)</td>
+                                    <td class="text-left"><span t-field="l.product_id.display_name"/></td>
                                     <td class="text-right"><span t-field="l.product_uom_qty"/></td>
                                     <td class="text-right"><span t-field="l.price_unit"/></td>
+                                    <td style="width: 5%;" class="text-right">&#160;</td>
                                     <td class="text-right"><span t-field="l.price_subtotal"/></td>
                                     <t t-set="i" t-value="i + 1"/>
                                 </tr>
                                 <tr>
                                     <td class="text-center">&#160;</td>
-                                    <td class="text-center">&#160;</td>
-                                    <td class="text-center"><b>Total ExW</b></td>
                                     <td class="text-right">&#160;</td>
+                                    <td class="text-right">&#160;</td>
+                                    <td class="text-right"><b>Total ExW</b></td>
                                     <td class="text-right">&#160;</td>
                                     <td class="text-right" style="border-top: solid 1px; border-bottom: solid 1px"><b><span t-field="o.amount_total"/></b></td>
                                 </tr>
                             </tbody>
                         </table>
+                        <br/>
                         <table style="width: 100%;">
                             <tr>
                                 <td style="width: 20%;"><b>PACKING:</b></td>
                                 <td style="width: 25%;"><span t-field="o.packing"/></td>
                                 <td style="width: 10%;">&#160;</td>
                                 <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 20%;">&#160;</td>
-                                <td style="width: 25%;">&#160;</td>
-                                <td style="width: 10%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;F.O.B.</td>
+                                <td style="width: 15%;" class="text-right"><span t-field="o.type_total"/></td>
                             </tr>
                             <tr>
                                 <td style="width: 20%;"><b>H.S.CODE NO:</b></td>
                                 <td style="width: 25%;"><span t-field="o.hs_code"/></td>
                                 <td style="width: 10%;">&#160;</td>
                                 <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 20%;">&#160;</td>
-                                <td style="width: 25%;">&#160;</td>
-                                <td style="width: 10%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 20%;">&#160;</td>
-                                <td style="width: 25%;">&#160;</td>
-                                <td style="width: 10%;">&#160;</td>
-                                <td style="width: 15%;">F.O.B.</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;"><span t-field="o.type_total"/></td>
+                                <td style="width: 15%;">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;FREIGHT</td>
+                                <td style="width: 15%;" class="text-right"><span t-field="o.freight_total"/></td>
                             </tr>
                             <tr>
                                 <td style="width: 20%;"><b>SHIPMENT:</b></td>
                                 <td style="width: 25%;"><b><span t-field="o.shipment"/></b></td>
                                 <td style="width: 10%;">&#160;</td>
-                                <td style="width: 15%;">FREIGHT</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;"><span t-field="o.freight_total"/></td>
-                            </tr>
-                            <tr>
-                                <td style="width: 20%;">&#160;</td>
-                                <td style="width: 25%;">&#160;</td>
-                                <td style="width: 10%;">&#160;</td>
                                 <td style="width: 15%;">&#160;</td>
                                 <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;"><span t-field="o.insurance_total"/></td>
+                                <td style="width: 15%;" class="text-right"><span t-field="o.insurance_total"/></td>
                             </tr>
                             <tr>
                                 <td style="width: 20%;"><b>FINANCE:</b></td>
@@ -147,27 +116,11 @@
                                 <td style="width: 10%;">&#160;</td>
                                 <td style="width: 15%;">&#160;</td>
                                 <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;"><b><span t-field="o.grand_total"/></b></td>
-                            </tr>
-                            <tr>
-                                <td style="width: 20%;">&#160;</td>
-                                <td style="width: 25%;">&#160;</td>
-                                <td style="width: 10%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
+                                <td style="width: 15%;" class="text-right"><b><span t-field="o.grand_total"/></b></td>
                             </tr>
                             <tr>
                                 <td style="width: 20%;">PORT OF SHIPMENT:</td>
                                 <td style="width: 25%;"><span t-field="o.port_of_shipment"/></td>
-                                <td style="width: 10%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 20%;">&#160;</td>
-                                <td style="width: 25%;">&#160;</td>
                                 <td style="width: 10%;">&#160;</td>
                                 <td style="width: 15%;">&#160;</td>
                                 <td style="width: 15%;">&#160;</td>
@@ -182,19 +135,11 @@
                                 <td style="width: 15%;">&#160;</td>
                             </tr>
                             <tr>
-                                <td style="width: 20%;">&#160;</td>
-                                <td style="width: 25%;">&#160;</td>
-                                <td style="width: 10%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                                <td style="width: 15%;">&#160;</td>
-                            </tr>
-                            <tr>
                                 <td style="width: 20%;">BANKER:</td>
                                 <td style="width: 25%;"><span t-field="o.main_bank_id"/></td>
                                 <td style="width: 10%;">&#160;</td>
                                 <td style="width: 15%;">MARKS:</td>
-                                <td style="width: 30%;"><span t-field="o.marks"/></td>
+                                <td style="width: 30%;" colspan="2" class="text-right"><span t-field="o.marks"/></td>
                             </tr>
                         </table>
                         <br/>
@@ -220,14 +165,6 @@
                               2) Final shipping details  - No sooner vesel dept.<br/>
                               3) Documents to be dispatched within two days of departure of vessel
                         </div>
-                        <br/>
-                        <div width="100%">
-                            * Shipping information and Documents should be as follows<br/>
-                              1) Advance shipping details - No sooner vessel is booked<br/>
-                              2) Final shipping details  - No sooner vesel dept.<br/>
-                              3) Documents to be dispatched within two days of departure of vessel
-                        </div>
-                        <br/>
                     </div>
                 </t>
             </t>
