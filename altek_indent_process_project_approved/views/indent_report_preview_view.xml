@@ -81,7 +81,7 @@
     <menuitem id="indent_report_preview_menu"
               action="indent_report_preview_action"
               name="Indent Report Preview"
-              parent="indent_process_main_menu_reports"
+              parent="altek_indent_process_project_approved.indent_process_main_menu_reports"
               sequence="2"/>
 
 </odoo>
