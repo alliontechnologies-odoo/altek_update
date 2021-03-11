@@ -16,7 +16,7 @@
                     <button string="New Quotation" name="action_sale_quotations_indent" type="object" class="oe_highlight"
                             attrs="{'invisible': [('state', 'not in', ['validate'])]}"/>
                     <button string="New Indent Sheet" name="action_indent_sheet_indent" type="object" class="oe_highlight"
-                            attrs="{'invisible': ['|', ('state', 'not in', ['validate']), ('indent_sheet_id', '=', True)]}"/>
+                            attrs="{'invisible': ['|', ('indent_sheet_id', '!=', False), ('state', 'not in', ['validate'])]}"/>
                     <button string="Create Debit Note" name="%(sale.action_view_sale_advance_payment_inv)d"
                             type="action" class="btn-primary" attrs="{'invisible': [('state', 'not in', ['pending_debit_note'])]}"/>
                     <button name="order_confirmed"
