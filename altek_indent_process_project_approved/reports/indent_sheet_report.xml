@@ -31,7 +31,7 @@
                                 <td>
                                     <table style="margin-left: 30px">
                                         <tr>
-                                            <td style="padding:5px; width: 60%;"><b>Ref. Customer PO No  </b></td>
+                                            <td style="padding:5px; width: 80%;"><b>Ref. Customer PO No  </b></td>
                                             <td class="text-right"><b><span t-field="o.customer_po_no"/></b></td>
                                         </tr>
                                         <tr>
