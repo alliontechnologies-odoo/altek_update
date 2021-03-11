@@ -51,9 +51,6 @@
                         <br/>
                         <table style="width: 100%;">
                             <thead>
-<!--                                <tr>-->
-<!--                                    <td colspan="6">Item ( Description,Quality and Quantity)</td>-->
-<!--                                </tr>-->
                                 <tr>
                                     <th style="width: 5%;" class="text-center">&#160;</th>
                                     <td style="width: 35%;" class="text-left"><u>Item ( Description,Quality and Quantity)</u></td>
