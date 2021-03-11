@@ -133,7 +133,7 @@
         <field name="name">indent.sheet.tree.view</field>
         <field name="model">indent.sheet</field>
         <field name="arch" type="xml">
-            <tree string="Indent Sheets" class="o_sale_order" multi_edit="1" sample="1">
+            <tree string="Indent Sheets" class="o_sale_order" multi_edit="1" sample="1" create="false" edit="false">
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="supplier_id"/>

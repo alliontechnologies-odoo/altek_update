@@ -193,6 +193,7 @@ class IndentProcess(models.Model):
     debit_note_created = fields.Boolean(string='Debit Note Created', default=False)
     invoice_ids = fields.Many2many("account.move", string='Invoices', readonly=True,
                                    copy=False, search="_search_invoice_ids")
+    indent_sheet_id = fields.Many2one('indent.sheet', string='Indent Sheet No', readonly=True)
 
     def view_activities(self):
         """View related current activities"""

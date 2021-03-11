@@ -216,6 +216,7 @@
         <field name="arch" type="xml">
             <tree string="Indent" class="o_sale_order" multi_edit="1" sample="1">
                 <field name="name"/>
+                <field name="indent_sheet_id"/>
                 <field name="partner_id" readonly="1"/>
                 <field name="customer_expected_date" widget="date" optional="hide"/>
                 <field name="user_id" widget="many2one_avatar_user" optional="show"/>

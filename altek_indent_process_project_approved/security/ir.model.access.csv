@@ -6,7 +6,7 @@ access_indent_process_activities,access.indent.process.activities,model_indent_p
 assign_user_wizard,access.assign.user.wizard,model_assign_user_wizard,base.group_user,1,1,1,1
 comment_wizard,comment.wizard,model_comment_wizard,base.group_user,1,1,1,1
 access_indent_report_view_wizard,access.indent.report.view.wizard,model_indent_report_view_wizard,base.group_user,1,1,1,1
-access_indent_sheet,access.access.indent.sheet,model_indent_sheet,base.group_user,1,1,1,1
+access_indent_sheet,access.access.indent.sheet,model_indent_sheet,base.group_user,1,1,1,0
 access_indent_sheet_lines,access.access.indent.sheet.lines,model_indent_sheet_line,base.group_user,1,1,1,1
 access_indent_advance_payment_inv,access.indent.advance.payment.inv,model_indent_advance_payment_inv,base.group_user,1,1,1,0
 access_indent_report_preview,access.indent.report.preview,model_indent_report_preview,base.group_user,1,1,1,0

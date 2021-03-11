@@ -165,8 +165,12 @@ class IndentSheet(models.Model):
             customer_short_code = self.env['res.partner'].browse(vals['partner_id']).customer_short_code or ''
             supplier_short_code = self.env['res.partner'].browse(vals['supplier_id']).supplier_short_code or ''
             country_origin = self.env['res.country'].browse(vals['country_id']).code or ''
-            vals['marks'] = supplier_short_code + '/' + country_origin + '/' + customer_short_code + '/' + vals['name']
+            vals['marks'] = vals['name']
         result = super(IndentSheet, self).create(vals)
+        if result:
+            result.indent_id.write({
+                    'indent_sheet_id': result.id
+                })
         return result
 
 
