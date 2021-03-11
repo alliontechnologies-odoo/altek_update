@@ -39,7 +39,7 @@
                                             <td class="text-right"><b><span t-field="o.customer_po_date"/></b></td>
                                         </tr>
                                     </table>
-                                    <table>
+                                    <table style="margin-top: 10px">
                                         <tr>
                                             <td width="35%" class="text-left" style="padding-left:5px"><span>On behalf of Messers</span></td>
                                             <td width="65%" class="text-right" style="padding-left:5px"><b><span t-esc="o.partner_id" t-options='{"widget": "contact", "fields": ["name","address"], "no_marker": True}'/></b></td>
