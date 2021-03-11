@@ -30,11 +30,11 @@
                                 <td style="width: 60%;">
                                     <table>
                                         <tr>
-                                            <td style="padding:5px; width: 40%;"><b>Ref. Customer PO No.  :</b></td>
+                                            <td style="padding:5px; width: 40%;"><b>Ref.Customer PO No:</b></td>
                                             <td style="padding:5px; width: 10%;" class="text-right"><b><span t-field="o.customer_po_no"/></b></td>
                                         </tr>
                                         <tr>
-                                            <td style="padding:5px; width: 40%;"><b>Ref. Customer PO Date :</b></td>
+                                            <td style="padding:5px; width: 40%;"><b>Ref.Customer PO Date:</b></td>
                                             <td style="padding:5px; width: 10%;" class="text-right"><b><span t-field="o.customer_po_date"/></b></td>
                                         </tr>
                                         <tr>
