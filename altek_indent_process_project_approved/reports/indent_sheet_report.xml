@@ -56,7 +56,7 @@
 <!--                                </tr>-->
                                 <tr>
                                     <th style="width: 5%;" class="text-center">&#160;</th>
-                                    <td style="width: 35%;" class="text-left">Item ( Description,Quality and Quantity)</td>
+                                    <td style="width: 35%;" class="text-left"><u>Item ( Description,Quality and Quantity)</u></td>
                                     <td style="width: 20%;" class="text-right"><u>KGS</u></td>
                                     <td style="width: 15%;" class="text-right"><u>US$/KG</u></td>
                                     <td style="width: 5%;" class="text-right">&#160;</td>
