@@ -35,8 +35,8 @@
                                             <td style="padding:5px; width: 60%;" class="text-right"><b><span t-field="o.customer_po_no"/></b></td>
                                         </tr>
                                         <tr>
-                                            <td style="padding:5px; width: 50%;"><b>Ref. Customer PO Date    </b></td>
-                                            <td style="padding:5px; width: 50%;" class="text-right"><b><span t-field="o.customer_po_date"/></b></td>
+                                            <td style="padding:5px; width: 60%;"><b>Ref. Customer PO Date    </b></td>
+<!--                                            <td style="padding:5px; width: 50%;" class="text-right"><b><span t-field="o.customer_po_date"/></b></td>-->
                                         </tr>
                                     </table>
 <!--                                    <tr>-->
