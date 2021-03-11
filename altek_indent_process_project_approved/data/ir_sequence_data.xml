@@ -15,7 +15,7 @@
         <record id="seq_indent_sheet" model="ir.sequence">
             <field name="name">Indent Sheet</field>
             <field name="code">indent.sheet</field>
-            <field name="prefix">INDENT SHEET/</field>
+            <field name="prefix"></field>
             <field name="padding">4</field>
             <field name="suffix">/%(y)s</field>
             <field name="company_id" eval="False"/>
